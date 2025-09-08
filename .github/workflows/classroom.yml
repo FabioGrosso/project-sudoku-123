@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 用官方 Python，别用 miniconda 路径
+      # 用官方 Python，不要 miniconda 路径
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -27,7 +27,6 @@ jobs:
       - name: Install clingo
         run: |
           python -m pip install --upgrade pip
-          # 版本按你课程需要锁定；5.6.x/5.7.x 都可。和本地一致即可。
           pip install "clingo==5.7.1"
 
       # ---- 评分项 ----
@@ -54,9 +53,8 @@ jobs:
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: "Question 1a"
-          # 不再需要 setup-command（清空即可）
           setup-command: ''
-          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo "$(which clingo)" --question=1a'
+          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo clingo --question=1a'
           timeout: '180'
           max-score: '25'
 
@@ -66,7 +64,7 @@ jobs:
         with:
           test-name: "Question 1b"
           setup-command: ''
-          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo "$(which clingo)" --question=1b'
+          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo clingo --question=1b'
           timeout: '180'
           max-score: '15'
 
@@ -76,7 +74,7 @@ jobs:
         with:
           test-name: "Question 1c"
           setup-command: ''
-          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo "$(which clingo)" --question=1c'
+          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo clingo --question=1c'
           timeout: '180'
           max-score: '15'
 
@@ -86,7 +84,7 @@ jobs:
         with:
           test-name: "Question 2"
           setup-command: ''
-          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo "$(which clingo)" --question=2'
+          command: 'ls group.txt && [ -s group.txt ] && python autograder.py --clingo clingo --question=2'
           timeout: '300'
           max-score: '35'
 
