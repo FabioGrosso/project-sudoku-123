@@ -24,9 +24,12 @@ jobs:
         with:
           python-version: "3.10"
 
-      # 用 apt 安装 clingo
-      - name: Install clingo
+      # 从 Potassco 官方 PPA 安装 clingo
+      - name: Install clingo from Potassco PPA
         run: |
+          sudo apt-get update
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository -y ppa:potassco/stable
           sudo apt-get update
           sudo apt-get install -y clingo
           clingo --version
